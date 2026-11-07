@@ -5,27 +5,27 @@ using UnityEngine.UI;
 
 public class SceneTransition : MonoBehaviour
 {
-    private static SceneTransition instance;
+    private static SceneTransition instance; //other scripts can reference 
 
-    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private float fadeDuration = 0.5f; //fade tieme
 
-    private CanvasGroup group;
-    private bool loading;
+    private CanvasGroup group;//controls the canva black creen
+    private bool loading; //loading time
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)] // loads on game start
     private static void Init()
     {
         if (instance != null) return;
         instance = new GameObject("SceneTransition").AddComponent<SceneTransition>();
     }
 
-    public static void Load(string sceneName)
+    public static void Load(string sceneName) //scene name in inspector
     {
         if (instance != null && !instance.loading)
             instance.StartCoroutine(instance.Transition(sceneName, -1));
     }
 
-    public static void Load(int buildIndex)
+    public static void Load(int buildIndex) //calls the scene build number 
     {
         if (instance != null && !instance.loading)
             instance.StartCoroutine(instance.Transition(null, buildIndex));
@@ -33,24 +33,24 @@ public class SceneTransition : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
+        if (instance != null && instance != this) //if there is a second copy delete
+        { 
             Destroy(gameObject);
             return;
         }
 
-        instance = this;
+        instance = this; //keeps object alive when scene changes
         DontDestroyOnLoad(gameObject);
 
-        Canvas canvas = gameObject.AddComponent<Canvas>();
+        Canvas canvas = gameObject.AddComponent<Canvas>(); //makes a canvas that in on top
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 999;
 
-        group = gameObject.AddComponent<CanvasGroup>();
+        group = gameObject.AddComponent<CanvasGroup>(); //start invisible and then fades in
         group.alpha = 0f;
         group.blocksRaycasts = false;
 
-        GameObject panel = new GameObject("Fade");
+        GameObject panel = new GameObject("Fade"); //makes a black image to fade in the screen
         panel.transform.SetParent(transform, false);
         Image image = panel.AddComponent<Image>();
         image.color = Color.black;
@@ -63,25 +63,25 @@ public class SceneTransition : MonoBehaviour
 
     private IEnumerator Transition(string sceneName, int buildIndex)
     {
-        loading = true;
+        loading = true; //while changing scenes
         group.blocksRaycasts = true;
 
-        yield return Fade(1f);
+        yield return Fade(1f); //fades to black
 
         AsyncOperation op = sceneName != null
-            ? SceneManager.LoadSceneAsync(sceneName)
+            ? SceneManager.LoadSceneAsync(sceneName) //loading the scene
             : SceneManager.LoadSceneAsync(buildIndex);
 
-        while (!op.isDone)
-            yield return null;
+        while (!op.isDone) //waits until loding is done
+            yield return null; 
 
-        yield return Fade(0f);
+        yield return Fade(0f); //fade in
 
-        group.blocksRaycasts = false;
+        group.blocksRaycasts = false; // lets u click
         loading = false;
     }
 
-    private IEnumerator Fade(float target)
+    private IEnumerator Fade(float target) //black screeb to clear
     {
         float start = group.alpha;
         float t = 0f;
