@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class ItemPopup : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement player; //calls to player
-    [SerializeField] private MemoryFade memoryFade; //calls to memory fade
-    [SerializeField] private AudioClip openSound; //attach audio
-    [SerializeField] private AudioClip pieceSound; //piece sound
+    [SerializeField] private PlayerMovement player;
+    [SerializeField] private MemoryFade memoryFade;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip pieceSound;
 
-    private AudioSource audioSource; //calls to audio source
+    private AudioSource audioSource;
     private bool closeNext;
     private bool finishing;
     private int piecesLeft;
@@ -21,10 +21,12 @@ public class ItemPopup : MonoBehaviour
 
     public void Open()
     {
-        closeNext = false; //start off
+        closeNext = false;
         finishing = false;
         gameObject.SetActive(true);
-        piecesLeft = GetComponentsInChildren<PopupPiece>().Length;
+        PopupPiece[] pieces = GetComponentsInChildren<PopupPiece>(true); //includes hidden pieces
+        foreach (PopupPiece piece in pieces) piece.gameObject.SetActive(true); //shows every piece again
+        piecesLeft = pieces.Length;
         player.enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -34,9 +36,9 @@ public class ItemPopup : MonoBehaviour
 
     public void PieceClicked()
     {
-        if (pieceSound != null) audioSource.PlayOneShot(pieceSound); //plays sound
+        if (pieceSound != null) audioSource.PlayOneShot(pieceSound);
 
-        piecesLeft--; 
+        piecesLeft--;
         if (piecesLeft > 0 || finishing) return;
         finishing = true;
 
