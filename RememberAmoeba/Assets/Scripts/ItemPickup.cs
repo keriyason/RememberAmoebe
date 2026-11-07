@@ -19,6 +19,7 @@ public class ItemPickup : MonoBehaviour
         {
             if (prompt != null) prompt.SetActive(false);
             if (pickupSound != null) AudioSource.PlayClipAtPoint(pickupSound, transform.position); //sounds plays
+            if (FloorManager.Instance != null) FloorManager.Instance.ItemCollected(); //counts toward the next floor
             popup.Open(); //popup opens
             gameObject.SetActive(false); //makes panel disappear
         }

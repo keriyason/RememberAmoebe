@@ -23,8 +23,6 @@ public class Pellette : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return; //checks player tag
 
-        if (FloorManager.Instance != null) FloorManager.Instance.ItemCollected(); //calls to floor manager when item is collected
-
         if (pickupSound != null) sharedSource.PlayOneShot(pickupSound); //plays sound
 
         Destroy(gameObject); //removes pellet
