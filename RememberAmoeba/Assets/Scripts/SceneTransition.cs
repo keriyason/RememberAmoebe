@@ -68,12 +68,16 @@ public class SceneTransition : MonoBehaviour
 
         yield return Fade(1f); //fades to black
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         AsyncOperation op = sceneName != null
             ? SceneManager.LoadSceneAsync(sceneName) //loading the scene
             : SceneManager.LoadSceneAsync(buildIndex);
 
         while (!op.isDone) //waits until loding is done
             yield return null; 
+
 
         yield return Fade(0f); //fade in
 
