@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 100633254}
   - component: {fileID: 100633258}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: WinTriggetTester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 533721975}
   - component: {fileID: 533721970}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: PopUpTester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1983,7 +1983,7 @@ GameObject:
   - component: {fileID: 2053008869}
   - component: {fileID: 2053008868}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ScreenTriggerTester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2098,7 +2098,7 @@ SceneRoots:
   - {fileID: 1274104605}
   - {fileID: 370932468}
   - {fileID: 2053008872}
+  - {fileID: 100633257}
   - {fileID: 533721974}
   - {fileID: 1302288575}
   - {fileID: 1845157192}
-  - {fileID: 100633257}
