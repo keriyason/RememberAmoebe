@@ -6,13 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class FloorTrigger : MonoBehaviour
 {
-    [SerializeField] private string sceneToLoad;
+    [SerializeField] private Transform respawnPoint;
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        if (respawnPoint == null)
         {
-            SceneManager.LoadScene(sceneToLoad);
+            Debug.LogWarning("RespawnTrigger: drag a respawn point into the slot", this);
+            return;
         }
+
+        CharacterController controller = other.GetComponent<CharacterController>();
+
+        if (controller != null) controller.enabled = false;
+        other.transform.position = respawnPoint.position;
+        if (controller != null) controller.enabled = true;
     }
 }
