@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopUpSequence : MonoBehaviour
+public class PopupSequence : MonoBehaviour
 {
-    public static PopUpSequence Instance;
+    public static PopupSequence Instance;
 
-    [SerializeField] private ItemPopup[] popups; //Order of pop up
+    [SerializeField] private ItemPopup[] popups; //popups in the order they should appear
 
     private int next; //which popup comes next
-    private ItemPopup current; // tracks the current pop up
+    private ItemPopup current; //the popup that is open right now
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class PopUpSequence : MonoBehaviour
 
     public bool OpenNext()
     {
-        if (current != null && current.gameObject.activeSelf) return false; // ta popup is already open
+        if (current != null && current.gameObject.activeSelf) return false; //a popup is already open
 
         if (next < popups.Length && popups[next] != null)
         {
