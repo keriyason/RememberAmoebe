@@ -11,10 +11,11 @@ public class ItemPopup : MonoBehaviour
     [SerializeField] private AudioClip pieceSound; //plays on every click
     [SerializeField] private GameObject bitePrefab; //your black bite mark image
     [SerializeField] private RectTransform biteParent; //empty container that fills the panel, bites spawn inside it
-    [SerializeField] private GameObject hintText; //the "Click to eat" text
+    [SerializeField] private GameObject hintText; //eat
     [SerializeField] private float hintHoldTime = 1.5f; //seconds the text stays before fading
     [SerializeField] private float hintFadeTime = 1f; //seconds the text takes to fade out
     [SerializeField] private int clicksToFinish = 5; //number of clicks until satisfied
+    [SerializeField] private bool allowEscape = false; //tick to let esc close the popup early
 
     private AudioSource audioSource;
     private readonly List<GameObject> bites = new List<GameObject>(); //every bite mark spawned
@@ -94,7 +95,7 @@ public class ItemPopup : MonoBehaviour
     {
         if (finishing) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape)) closeNext = true; //esc closes the popup
+        if (allowEscape && Input.GetKeyDown(KeyCode.Escape)) closeNext = true; //esc closes the popup
 
         if (Input.GetMouseButtonDown(0)) Eat(Input.mousePosition); //click anywhere on the screen
     }
@@ -155,6 +156,8 @@ public class ItemPopup : MonoBehaviour
 
     public void ReturnControl()
     {
+        if (finishing && PopupSequence.Instance != null && PopupSequence.Instance.PopupFinished()) return; //last popup the scene is changing so the player stays frozen
+
         if (player != null) player.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

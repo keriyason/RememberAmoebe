@@ -6,10 +6,12 @@ public class PopupSequence : MonoBehaviour
 {
     public static PopupSequence Instance;
 
-    [SerializeField] private ItemPopup[] popups;
-    [SerializeField] private GameObject prompt;
+    [SerializeField] private ItemPopup[] popups; //popups in the order they appear
+    [SerializeField] private GameObject prompt; //press e text shared by every item
+    [SerializeField] private string nextScene; //scene to load after every popup is done
 
     private int next;
+    private int finished;
     private ItemPopup current;
 
     public GameObject Prompt => prompt;
@@ -26,7 +28,7 @@ public class PopupSequence : MonoBehaviour
 
     public bool OpenNext()
     {
-        if (current != null && current.gameObject.activeSelf) return false;
+        if (current != null && current.gameObject.activeSelf) return false; //a popup is already open
 
         if (next < popups.Length && popups[next] != null)
         {
@@ -36,5 +38,18 @@ public class PopupSequence : MonoBehaviour
         }
 
         return true;
+    }
+
+    public bool PopupFinished()
+    {
+        finished++;
+
+        if (finished >= popups.Length && !string.IsNullOrEmpty(nextScene))
+        {
+            SceneTransition.Load(nextScene); //every popup is done
+            return true;
+        }
+
+        return false;
     }
 }
