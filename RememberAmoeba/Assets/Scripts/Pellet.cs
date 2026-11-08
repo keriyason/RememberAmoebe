@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class Pellette : MonoBehaviour
 {
-    [SerializeField] private AudioClip pickupSound;  // munch sound 
+    [SerializeField] private AudioClip pickupSound; //pellet sound
 
-    private static AudioSource sharedSource; // audio source for instant sound trigger
+    private static AudioSource sharedSource;
 
     private void Start()
     {
-        if (pickupSound != null) pickupSound.LoadAudioData(); // no delay on sound it will load right away
+        if (pickupSound != null) pickupSound.LoadAudioData(); //loads sound asap
 
-        if (sharedSource == null) //makes speaker if not exist
+        if (sharedSource == null)
         {
             sharedSource = new GameObject("PelletAudio").AddComponent<AudioSource>();
             sharedSource.playOnAwake = false;
         }
     }
 
-    private void OnTriggerEnter(Collider other) //collider trigger
+    private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return; //checks player tag
+        if (!other.CompareTag("Player")) return; //player tag
 
-        if (pickupSound != null) sharedSource.PlayOneShot(pickupSound); //plays sound
+        // Fill the boost bar
+        if (BoostBar.Instance != null) BoostBar.Instance.AddBoost();         // Fill the boost bar
 
-        Destroy(gameObject); //removes pellet
+
+        if (pickupSound != null) sharedSource.PlayOneShot(pickupSound);        // Play the sound right away
+
+
+        Destroy(gameObject); //pellet die
     }
 }

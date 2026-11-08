@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 6f; //walk speed
+    [SerializeField] private float boostMultiplier = 1.8f; //how much faster you go while boosting
     [SerializeField] private float jumpHeight = 1.5f; //jump height
     [SerializeField] private float gravity = -20f; //downward pull
     [SerializeField] private float turnSpeed = 12f; //how fast the player turns
@@ -62,7 +64,10 @@ public class PlayerMovement : MonoBehaviour
 
         verticalVelocity += gravity * Time.deltaTime; //gravity
 
-        Vector3 velocity = moveDir * moveSpeed;
+        float speed = moveSpeed;
+        if (BoostBar.Instance != null && BoostBar.Instance.IsBursting) speed *= boostMultiplier; //faster while boosting
+
+        Vector3 velocity = moveDir * speed;
         velocity.y = verticalVelocity;
         controller.Move(velocity * Time.deltaTime); //moves the player
     }
