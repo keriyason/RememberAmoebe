@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pellette : MonoBehaviour
+public class Pellet : MonoBehaviour
 {
     [SerializeField] private AudioClip pickupSound; //pellet sound
 
@@ -23,12 +23,11 @@ public class Pellette : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return; //player tag
 
-        // Fill the boost bar
-        if (BoostBar.Instance != null) BoostBar.Instance.AddBoost();         // Fill the boost bar
+        if (BoostBar.Instance != null) BoostBar.Instance.AddBoost(); //fill the boost bar
 
+        if (PlayerAnimation.Instance != null) PlayerAnimation.Instance.PelletEaten(); //counts toward the eating animation
 
-        if (pickupSound != null) sharedSource.PlayOneShot(pickupSound);        // Play the sound right away
-
+        if (pickupSound != null) sharedSource.PlayOneShot(pickupSound); //play the sound right away
 
         Destroy(gameObject); //pellet die
     }
