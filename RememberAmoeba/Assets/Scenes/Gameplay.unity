@@ -4708,6 +4708,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b176a97c6333ea74c8ce37e3de0c3744, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -4787,9 +4791,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6430,6 +6442,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b176a97c6333ea74c8ce37e3de0c3744, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -10601,9 +10617,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12481,6 +12505,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5754e2c754af5bb4ca659c9fc38e5218, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -13368,6 +13396,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5754e2c754af5bb4ca659c9fc38e5218, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.27645856
@@ -15200,9 +15232,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15531,6 +15571,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5754e2c754af5bb4ca659c9fc38e5218, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -17512,6 +17556,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5754e2c754af5bb4ca659c9fc38e5218, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.27645856
@@ -17890,6 +17938,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1274104600}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
@@ -19723,9 +19775,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -21947,6 +22007,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5754e2c754af5bb4ca659c9fc38e5218, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.27645856
@@ -24086,9 +24150,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -25047,9 +25119,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -26277,6 +26357,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b176a97c6333ea74c8ce37e3de0c3744, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -27550,6 +27634,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b176a97c6333ea74c8ce37e3de0c3744, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -28058,9 +28146,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -28865,6 +28961,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b176a97c6333ea74c8ce37e3de0c3744, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -29735,6 +29835,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b176a97c6333ea74c8ce37e3de0c3744, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -29753,7 +29857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalPosition.z
@@ -34258,6 +34362,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b176a97c6333ea74c8ce37e3de0c3744, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -34881,9 +34989,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -35458,9 +35574,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64237332}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -36931,6 +37055,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 982302169}
+    - target: {fileID: 819995457425717341, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5754e2c754af5bb4ca659c9fc38e5218, type: 3}
     - target: {fileID: 6655339534493058047, guid: 300788396f5a9c347820b2c6f9c03958, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36321124
@@ -38698,9 +38826,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1274104600}
     - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e292dfb2673c1b045bec9a2ec83c11e6, type: 3}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: memoryFade
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1971100950285185393, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
+      propertyPath: pieceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 537cb744e4fffff4c9217fd665dc42c3, type: 3}
     - target: {fileID: 4847329409506097561, guid: 42a2a1ce95af87e438ad30513522debc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
