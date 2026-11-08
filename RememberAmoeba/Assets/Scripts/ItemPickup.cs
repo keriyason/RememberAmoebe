@@ -4,33 +4,69 @@ using UnityEngine.EventSystems;
 
 public class ItemPickup : MonoBehaviour
 {
-    [SerializeField] private ItemPopup popup; //pop up ref
-    [SerializeField] private Transform player; //player tracker
-    [SerializeField] private GameObject prompt; // press e
-    [SerializeField] private AudioClip pickupSound; //audio
-    [SerializeField] private float pickupRange = 3f; //range in which u can pickup and see e
+    [SerializeField] private ItemPopup popup;
+    [SerializeField] private Transform player;
+    [SerializeField] private GameObject prompt;
+    [SerializeField] private AudioClip pickupSound;
+    [SerializeField] private float pickupRange = 2f;
+
+    private Collider itemCollider;
+    private bool showingPrompt;
+
+    private void Start()
+    {
+        itemCollider = GetComponentInChildren<Collider>();
+
+        if (player == null)
+        {
+            GameObject found = GameObject.FindWithTag("Player");
+            if (found != null) player = found.transform;
+        }
+
+        if (prompt == null && PopupSequence.Instance != null) prompt = PopupSequence.Instance.Prompt;
+    }
 
     private void Update()
     {
-        bool inRange = Vector3.Distance(transform.position, player.position) <= pickupRange; //true when the player is close enough
+        if (player == null) return;
 
-        if (prompt != null) prompt.SetActive(inRange);
+        Vector3 closest = itemCollider != null ? itemCollider.ClosestPoint(player.position) : transform.position;
+        bool inRange = Vector3.Distance(closest, player.position) <= pickupRange;
 
-        if (inRange && Input.GetKeyDown(KeyCode.E)) //press e
+        if (prompt != null)
+        {
+            if (inRange)
+            {
+                prompt.SetActive(true);
+                showingPrompt = true;
+            }
+            else if (showingPrompt)
+            {
+                prompt.SetActive(false);
+                showingPrompt = false;
+            }
+        }
+
+        if (inRange && Input.GetKeyDown(KeyCode.E))
         {
             if (PopupSequence.Instance != null)
             {
-                if (!PopupSequence.Instance.OpenNext()) return; //stops if a popup is already open
+                if (!PopupSequence.Instance.OpenNext()) return;
             }
             else if (popup != null)
             {
-                popup.Open(); //no sequence, so open this item's own popup
+                popup.Open();
             }
 
-            if (prompt != null) prompt.SetActive(false);
-            if (pickupSound != null) AudioSource.PlayClipAtPoint(pickupSound, transform.position); //sound plays
-            gameObject.SetActive(false); //makes the item disappear
-            if (FloorManager.Instance != null) FloorManager.Instance.ItemCollected(); //counts toward the next floor version
+            if (pickupSound != null) AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+            gameObject.SetActive(false);
+            if (FloorManager.Instance != null) FloorManager.Instance.ItemCollected();
         }
+    }
+
+    private void OnDisable()
+    {
+        if (showingPrompt && prompt != null) prompt.SetActive(false);
+        showingPrompt = false;
     }
 }

@@ -1,25 +1,27 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemPopup : MonoBehaviour
 {
     [SerializeField] private PlayerMovement player;
     [SerializeField] private MemoryFade memoryFade;
-    [SerializeField] private AudioClip openSound;
-    [SerializeField] private AudioClip pieceSound;
+    [SerializeField] private AudioClip openSound; //plays when the popup opens
+    [SerializeField] private AudioClip pieceSound; //plays on every click
     [SerializeField] private GameObject bitePrefab; //your black bite mark image
-    [SerializeField] private RectTransform biteParent; //where bite marks are placed, usually the popup panel
-    [SerializeField] private GameObject eatLabel; //the Eat text that follows the mouse
-    [SerializeField] private Vector3 labelOffset = new Vector3(40f, 40f, 0f); //how far the Eat text sits from the mouse
+    [SerializeField] private RectTransform biteParent; //empty container that fills the panel, bites spawn inside it
+    [SerializeField] private GameObject hintText; //the "Click to eat" text
+    [SerializeField] private float hintHoldTime = 1.5f; //seconds the text stays before fading
+    [SerializeField] private float hintFadeTime = 1f; //seconds the text takes to fade out
+    [SerializeField] private int clicksToFinish = 5; //number of clicks until satisfied
 
     private AudioSource audioSource;
     private readonly List<GameObject> bites = new List<GameObject>(); //every bite mark spawned
     private bool closeNext;
     private bool finishing;
-    private bool hovering; //true while the mouse is over a piece
-    private int piecesLeft;
+    private bool opened; //true once a pickup has opened the popup
+    private int clicksLeft;
 
     private void Awake()
     {
@@ -27,8 +29,20 @@ public class ItemPopup : MonoBehaviour
         if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
 
-        if (EventSystem.current == null)
-            new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
+        FindReferences();
+
+        if (!opened) gameObject.SetActive(false); //hides the popup at the start of the game
+    }
+
+    private void FindReferences()
+    {
+        if (player == null)
+        {
+            GameObject found = GameObject.FindWithTag("Player"); //finds the player on its own
+            if (found != null) player = found.GetComponent<PlayerMovement>();
+        }
+
+        if (memoryFade == null) memoryFade = FindFirstObjectByType<MemoryFade>(); //finds the memory erased screen on its own
     }
 
     public void Open()
@@ -37,60 +51,61 @@ public class ItemPopup : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 1f;
 
+        FindReferences();
+        opened = true; //stops Awake from hiding it again
         closeNext = false;
         finishing = false;
-        SetHovering(false);
+        clicksLeft = Mathf.Max(1, clicksToFinish); //resets the click counter
         ClearBites(); //removes bite marks from last time
         gameObject.SetActive(true);
-
-        PopupPiece[] pieces = GetComponentsInChildren<PopupPiece>(true);
-        foreach (PopupPiece piece in pieces) piece.gameObject.SetActive(true);
-        piecesLeft = pieces.Length;
 
         if (player != null) player.enabled = false;
         else Debug.LogWarning("Player slot is empty on ItemPopup");
 
         if (openSound != null) audioSource.PlayOneShot(openSound);
+
+        StopAllCoroutines();
+        if (hintText != null) StartCoroutine(ShowHint()); //Click to eat text appears then fades
     }
 
-    public void SetHovering(bool value)
+    private IEnumerator ShowHint()
     {
-        hovering = value;
-        if (eatLabel != null) eatLabel.SetActive(value); //shows or hides the Eat text
+        CanvasGroup group = hintText.GetComponent<CanvasGroup>();
+        if (group == null) group = hintText.AddComponent<CanvasGroup>();
+
+        hintText.SetActive(true);
+        group.alpha = 1f;
+
+        yield return new WaitForSecondsRealtime(hintHoldTime); //text stays for a moment
+
+        float t = 0f;
+        while (t < hintFadeTime)
+        {
+            t += Time.unscaledDeltaTime;
+            group.alpha = Mathf.Lerp(1f, 0f, t / hintFadeTime); //fades out
+            yield return null;
+        }
+
+        group.alpha = 0f;
+        hintText.SetActive(false);
     }
 
-    public void SpawnBite(PointerEventData eventData)
+    private void Update()
     {
-        if (bitePrefab == null || biteParent == null) return;
+        if (finishing) return;
 
-        Vector2 local;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(biteParent, eventData.position, eventData.pressEventCamera, out local); //click spot on the panel
+        if (Input.GetKeyDown(KeyCode.Escape)) closeNext = true; //esc closes the popup
 
-        GameObject bite = Instantiate(bitePrefab, biteParent);
-        bite.transform.localPosition = local; //puts the bite where you clicked
-        bite.transform.localRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)); //random angle
-        bite.transform.localScale = Vector3.one * Random.Range(0.9f, 1.2f); //random size
-
-        foreach (Graphic graphic in bite.GetComponentsInChildren<Graphic>())
-            graphic.raycastTarget = false; //so clicks go through the bite to the pieces
-
-        bites.Add(bite);
+        if (Input.GetMouseButtonDown(0)) Eat(Input.mousePosition); //click anywhere on the screen
     }
 
-    private void ClearBites()
+    private void Eat(Vector2 screenPoint)
     {
-        foreach (GameObject bite in bites)
-            if (bite != null) Destroy(bite);
-
-        bites.Clear();
-    }
-
-    public void PieceClicked()
-    {
+        SpawnBite(screenPoint); //bite mark appears where you clicked
         if (pieceSound != null) audioSource.PlayOneShot(pieceSound);
 
-        piecesLeft--;
-        if (piecesLeft > 0 || finishing) return;
+        clicksLeft--;
+        if (clicksLeft > 0) return; //not satisfied yet
         finishing = true;
 
         if (memoryFade != null)
@@ -104,9 +119,37 @@ public class ItemPopup : MonoBehaviour
         }
     }
 
+    private void SpawnBite(Vector2 screenPoint)
+    {
+        if (bitePrefab == null || biteParent == null) return;
+
+        Canvas canvas = GetComponentInParent<Canvas>();
+        Camera cam = canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
+
+        Vector3 world;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(biteParent, screenPoint, cam, out world); //click spot in the UI
+
+        GameObject bite = Instantiate(bitePrefab, biteParent);
+        bite.transform.position = world;
+        bite.transform.localRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)); //random angle
+        bite.transform.localScale = Vector3.one * Random.Range(0.9f, 1.2f); //random size
+
+        foreach (Graphic graphic in bite.GetComponentsInChildren<Graphic>())
+            graphic.raycastTarget = false;
+
+        bites.Add(bite);
+    }
+
+    private void ClearBites()
+    {
+        foreach (GameObject bite in bites)
+            if (bite != null) Destroy(bite);
+
+        bites.Clear();
+    }
+
     public void Hide()
     {
-        SetHovering(false);
         gameObject.SetActive(false);
     }
 
@@ -115,17 +158,6 @@ public class ItemPopup : MonoBehaviour
         if (player != null) player.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
-
-    private void Update()
-    {
-        if (!finishing && Input.GetKeyDown(KeyCode.Escape)) closeNext = true;
-
-        if (hovering && eatLabel != null)
-        {
-            eatLabel.transform.position = Input.mousePosition + labelOffset; //Eat text follows the mouse
-            eatLabel.transform.SetAsLastSibling(); //keeps it above the bite marks
-        }
     }
 
     private void LateUpdate()
