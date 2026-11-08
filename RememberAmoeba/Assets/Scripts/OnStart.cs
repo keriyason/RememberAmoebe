@@ -5,8 +5,8 @@ public class SceneButton : MonoBehaviour
 {
     [SerializeField] private string sceneName;
 
-    private void Awake()
+    public void LoadScene()
     {
-        GetComponent<Button>().onClick.AddListener(() => SceneTransition.Load(sceneName));
+        SceneTransition.Load(sceneName);
     }
 }
