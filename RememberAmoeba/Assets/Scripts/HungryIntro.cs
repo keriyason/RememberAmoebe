@@ -5,8 +5,9 @@ using UnityEngine;
 public class HuntryIntro : MonoBehaviour
 {
     [SerializeField] private float startDelay = 0.5f;
+    [SerializeField] private float fadeInTime = 1f;
     [SerializeField] private float holdTime = 3f;
-    [SerializeField] private float fadeTime = 2f;
+    [SerializeField] private float fadeOutTime = 2f;
 
     private CanvasGroup group;
 
@@ -29,19 +30,24 @@ public class HuntryIntro : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(startDelay);
 
-        group.alpha = 1f;
-
+        yield return Fade(0f, 1f, fadeInTime);
         yield return new WaitForSecondsRealtime(holdTime);
+        yield return Fade(1f, 0f, fadeOutTime);
 
+        gameObject.SetActive(false);
+    }
+
+    private IEnumerator Fade(float from, float to, float duration)
+    {
         float t = 0f;
-        while (t < fadeTime)
+
+        while (t < duration)
         {
             t += Time.unscaledDeltaTime;
-            group.alpha = Mathf.Lerp(1f, 0f, t / fadeTime);
+            group.alpha = Mathf.Lerp(from, to, t / duration);
             yield return null;
         }
 
-        group.alpha = 0f;
-        gameObject.SetActive(false);
+        group.alpha = to;
     }
 }
